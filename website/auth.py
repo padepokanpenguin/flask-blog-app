@@ -16,14 +16,14 @@ def login():
         if(user):
             if(check_password_hash(user.password, password)):
                 flash("Logged in!", category='success')
-                login_user(user, remember=True)
+                login_user(user)
                 return redirect(url_for('views.home'))
             else:
                 flash("Password is incorrect", category="error")
         else:
             flash("Email doesnt exists", category="error")
             
-    return render_template("login.html", user=current_user)
+    return render_template("login.html",user=current_user)
 
 @auth.route("/sign-up", methods=["GET", "POST"])
 def sign_up():
